@@ -1,0 +1,8 @@
+name: initial_cot_detailed_v1
+description: Requests detailed step-by-step reasoning with intermediate steps.
+template: |
+  The following are multiple choice questions (with answers) about {{ category }}.
+  Carefully analyze the question and options. Work through the problem step-by-step, showing all intermediate calculations, logical inferences, or domain-specific reasoning required to arrive at the solution. Ensure each step is clearly explained.
+  Finally, output the correct option in the format of "The correct option is (X)" at the end.
+
+  {{ question }}

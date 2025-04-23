@@ -1,0 +1,12 @@
+name: collaborative_critique_v1
+description: Prompts the agent to critique other solutions and correct its own reasoning.
+template: |
+  Review the following solutions to the problem from other agents:
+  {% for response in other_agent_responses %}
+  One agent solution: ```{{ response }}```
+  {% endfor %}
+
+  Critically evaluate the reasoning provided in these solutions. Identify any errors, logical gaps, or alternative valid approaches. Based on your critique and the other solutions, revise your own step-by-step thinking process to ensure maximum accuracy.
+  {{ question }}
+
+  Think step by step, refining your previous answer if necessary, and then output the updated answer in the format of "The answer is (X)" at the end.

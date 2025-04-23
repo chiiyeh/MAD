@@ -1,0 +1,13 @@
+name: collaborative_confidence_v1
+description: Asks the agent to provide a confidence score with its updated answer.
+template: |
+  These are the solutions to the problem from other agents:
+  {% for response in other_agent_responses %}
+  One agent solution: ```{{ response }}```
+  {% endfor %}
+
+  Summarise the different solutions and use it as additional advice, to give an updated answer.
+  {{ question }}
+
+  Think step by step and then output the answer in the format of "The answer is (X)" at the end.
+  On a scale of 0 to 100, how confident are you in this updated answer? State your confidence as "Confidence: XX%".
