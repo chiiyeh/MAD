@@ -173,7 +173,8 @@ async def main(
     rounds: int,
     temperature: float,
     model: str,
-    rootdir: str # Pass rootdir as arg
+    rootdir: str, # Pass rootdir as arg
+    resume: bool,
 ):
     """
     Main asynchronous function to load data, interact with the model,
@@ -221,6 +222,32 @@ async def main(
         return # Exit if data loading fails
 
 
+    output_filename = (
+        f"mmlu_pro"
+        f"_{agents}agents"
+        f"_{rounds}rounds"
+        f"_{temperature}temp"
+        f"_{model.replace('/', '_')}" # Replace slash in model name for filename safety
+        f"_{initial_prompt_data['name']}"
+        f"_{collaborative_prompt_data['name']}"
+        f".json"
+    )
+
+    if resume and os.path.exists(output_filename):
+        print(f"Resuming from existing results in {output_filename}.")
+        try:
+            with open(output_filename, "r") as f:
+                response_dict = json.load(f)
+            print(f"Loaded {len(response_dict)} previously processed questions.")
+        except IOError as e:
+            print(f"Error loading existing results: {e}")
+            return
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON from existing results: {e}")
+            return
+        except Exception as e:
+            print(f"Unexpected error loading existing results: {e}")
+            return
     # Main loop iterating through samples (questions)
     for i in tqdm(range(num_samples), desc="Processing questions"):
         # Select a random question
@@ -232,8 +259,8 @@ async def main(
 
         # Ensure there's at least one question in the subject's dataframe
         if len(df) == 0:
-             print(f"Warning: Subject {subject} is empty. Skipping.")
-             continue
+            print(f"Warning: Subject {subject} is empty. Skipping.")
+            continue
 
         idx = random.randint(0, len(df) - 1)
         single_question = df[idx]
@@ -244,6 +271,10 @@ async def main(
         category = single_question["category"]
         question_text = single_question["question"]
         options = single_question["options"]
+
+        if q_id in response_dict:
+            print(f"Question ID {q_id} already processed. Skipping.")
+            continue
 
         print(f"\n--- Question {i+1}/{num_samples} (ID: {q_id}, Subject: {category}) ---")
 
@@ -341,16 +372,6 @@ async def main(
 
     # Save the final results
     # Include prompt names and other key parameters in the filename for tracking
-    output_filename = (
-        f"mmlu_pro"
-        f"_{agents}agents"
-        f"_{rounds}rounds"
-        f"_{temperature}temp"
-        f"_{model.replace('/', '_')}" # Replace slash in model name for filename safety
-        f"_{initial_prompt_data['name']}"
-        f"_{collaborative_prompt_data['name']}"
-        f".json"
-    )
     print(f"\nProcessing complete ({len(response_dict)} questions processed).")
     print(f"Saving results to {output_filename}")
     try:
@@ -421,6 +442,13 @@ if __name__ == "__main__":
         help="Root directory containing the 'dataset/mmlu_pro' folder."
     )
 
+    # Additional optional arguments for resuming from existing results
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume from existing results if available."
+    )
+
     args = parser.parse_args()
 
     # --- Run Async Main ---
@@ -434,7 +462,8 @@ if __name__ == "__main__":
             rounds=args.rounds,
             temperature=args.temperature,
             model=args.model,
-            rootdir=args.data_dir
+            rootdir=args.data_dir,
+            resume=args.resume
         ))
     except Exception as e:
         print(f"\nExperiment run failed: {e}")
