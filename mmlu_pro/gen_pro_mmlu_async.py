@@ -7,6 +7,7 @@ import json
 import re
 import random
 import time
+from pathlib import Path
 from tqdm import tqdm
 from datasets import load_dataset
 from typing import List, Dict, Tuple, Any
@@ -14,7 +15,7 @@ from eval_mmlu import parse_answer
 
 # Import libraries for prompt management and argument parsing
 import yaml
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jinja2 import Environment, select_autoescape
 import argparse
 
 random.seed(12345)
@@ -22,31 +23,20 @@ random.seed(12345)
 # --- Prompt Management Setup ---
 
 # Configure Jinja2 environment
-# Assumes prompt files are in a directory named 'prompts' relative to the script
-PROMPTS_DIR = "prompts"
-# Check if PROMPTS_DIR exists and create it if not, or instruct user
-if not os.path.exists(PROMPTS_DIR):
-    print(f"Warning: Prompts directory '{PROMPTS_DIR}' not found.")
-    print(f"Please create this directory and place your prompt YAML files inside.")
-    # exit(1) # Or exit here if you prefer it to be mandatory before running
-
-# Use a relative path loader for flexibility
 env = Environment(
-    loader=FileSystemLoader(PROMPTS_DIR),
     autoescape=select_autoescape(["html", "xml"]) # Autoescape isn't strictly needed for text prompts
 )
 
-def load_prompt_template_data(filename: str) -> Dict:
+def load_prompt_template_data(filepath: Path) -> Dict:
     """Loads a prompt definition from a YAML file and returns its content."""
-    filepath = os.path.join(PROMPTS_DIR, filename)
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with filepath.open('r', encoding='utf-8') as f:
             prompt_data = yaml.safe_load(f)
         if not isinstance(prompt_data, dict) or 'name' not in prompt_data or 'template' not in prompt_data:
-            raise ValueError(f"Prompt file {filename} must be a dictionary containing 'name' and 'template' keys.")
+            raise ValueError(f"Prompt file {filepath} must be a dictionary containing 'name' and 'template' keys.")
         return prompt_data
     except FileNotFoundError:
-        print(f"Error: Prompt file not found at {filepath}. Make sure it's in the '{PROMPTS_DIR}' directory.")
+        print(f"Error: Prompt file not found at {filepath}.")
         raise
     except yaml.YAMLError as e:
         print(f"Error parsing YAML file {filepath}: {e}")
@@ -176,8 +166,8 @@ def format_example(question, options):
 
 # --- Async Main Execution ---
 async def main(
-    initial_prompt_filename: str,
-    collaborative_prompt_filename: str,
+    initial_prompt_filepath: Path,
+    collaborative_prompt_filepath: Path,
     num_samples: int,
     agents: int,
     rounds: int,
@@ -192,10 +182,10 @@ async def main(
     response_dict: Dict[str, Any] = {}
 
     # Load prompt templates once at the start using the provided filenames
-    print(f"Loading prompt templates: {initial_prompt_filename}, {collaborative_prompt_filename}")
+    print(f"Loading prompt templates: {initial_prompt_filepath}, {collaborative_prompt_filepath}")
     try:
-        initial_prompt_data = load_prompt_template_data(initial_prompt_filename)
-        collaborative_prompt_data = load_prompt_template_data(collaborative_prompt_filename)
+        initial_prompt_data = load_prompt_template_data(initial_prompt_filepath)
+        collaborative_prompt_data = load_prompt_template_data(collaborative_prompt_filepath)
 
         # Get template objects from the environment using the filenames
         initial_template = env.from_string(initial_prompt_data['template'])
@@ -342,9 +332,9 @@ async def main(
              "answer": answer, # True answer
              "category": category,
              "initial_prompt_used": initial_prompt_data['name'], # Track which prompt was used by name
-             "initial_prompt_file": initial_prompt_filename, # Track which file was used
+             "initial_prompt_file": str(initial_prompt_filepath), # Track which file was used
              "collaborative_prompt_used": collaborative_prompt_data['name'], # Track which prompt was used by name
-             "collaborative_prompt_file": collaborative_prompt_filename, # Track which file was used
+             "collaborative_prompt_file": str(collaborative_prompt_filepath), # Track which file was used
              "agent_contexts": agent_contexts, # Store the full history for each agent
              "extracted_answers": [parse_answer(ctx[-1]['content']) if ctx and ctx[-1]['role'] == 'assistant' else None for ctx in agent_contexts]
         }
@@ -382,15 +372,15 @@ if __name__ == "__main__":
     # Required arguments for prompt files
     parser.add_argument(
         "--initial_prompt",
-        type=str,
+        type=Path,
         required=True,
-        help="Filename (in the 'prompts' directory) for the initial agent prompt YAML."
+        help="Filepath for the initial agent prompt YAML."
     )
     parser.add_argument(
         "--collaborative_prompt",
-        type=str,
+        type=Path,
         required=True,
-        help="Filename (in the 'prompts' directory) for the collaborative prompt YAML for subsequent rounds."
+        help="Filepath for the collaborative prompt YAML for subsequent rounds."
     )
 
     # Optional arguments for experiment parameters with default values
@@ -433,18 +423,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # --- Check Prompts Directory ---
-    if not os.path.exists(PROMPTS_DIR):
-        print(f"Error: Prompts directory '{PROMPTS_DIR}' not found.")
-        print(f"Please create this directory and place your prompt YAML files inside.")
-        exit(1) # Exit if directory is missing
-
     # --- Run Async Main ---
     # Pass the parsed arguments to the main async function
     try:
         asyncio.run(main(
-            initial_prompt_filename=args.initial_prompt,
-            collaborative_prompt_filename=args.collaborative_prompt,
+            initial_prompt_filepath=args.initial_prompt,
+            collaborative_prompt_filepath=args.collaborative_prompt,
             num_samples=args.num_samples,
             agents=args.agents,
             rounds=args.rounds,
