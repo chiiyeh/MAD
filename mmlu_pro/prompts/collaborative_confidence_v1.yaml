@@ -9,5 +9,5 @@ template: |
   Summarise the different solutions and use it as additional advice, to give an updated answer.
   {{ question }}
 
-  Think step by step and then output the answer in the format of "The answer is (X)" at the end.
+  Think step by step and then output the final option in the format of "The correct option is (X)" at the end.
   On a scale of 0 to 100, how confident are you in this updated answer? State your confidence as "Confidence: XX%".

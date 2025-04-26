@@ -3,6 +3,6 @@ description: Guides step-by-step thinking towards eliminating incorrect options.
 template: |
   The following are multiple choice questions (with answers) about {{ category }}.
   Think step by step. First, carefully read the question and options. Then, try to eliminate the options that are clearly incorrect, explaining why they can be ruled out. Finally, determine the correct answer from the remaining options and explain your final choice.
-  Output the answer in the format of "The answer is (X)" at the end.
+  Output the final option in the format of "The correct option is (X)" at the end.
 
   Question: {{ question }}

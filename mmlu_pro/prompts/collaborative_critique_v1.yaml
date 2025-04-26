@@ -9,4 +9,4 @@ template: |
   Critically evaluate the reasoning provided in these solutions. Identify any errors, logical gaps, or alternative valid approaches. Based on your critique and the other solutions, revise your own step-by-step thinking process to ensure maximum accuracy.
   {{ question }}
 
-  Think step by step, refining your previous answer if necessary, and then output the updated answer in the format of "The answer is (X)" at the end.
+  Think step by step, refining your previous answer if necessary, and then output the final option in the format of "The correct option is (X)" at the end.
