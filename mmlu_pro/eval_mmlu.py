@@ -3,6 +3,8 @@ import openai
 import numpy as np
 import time
 import re
+from pathlib import Path
+import argparse
 
 def parse_bullets(sentence):
     bullets_preprocess = sentence.split("\n")
@@ -88,7 +90,7 @@ def compute_accuracy(gt, pred_solutions):
         if not pred_answers:
             print(pred_solutions, gt)
             return 0
-        print(gt, pred_answers)
+        # print(gt, pred_answers)
         pred_answer = most_frequent(pred_answers)
         # pred_answer = pred_answers[0]
     else:
@@ -141,37 +143,53 @@ def select_multi_step_questions(json_file: str):
     return question_ans_pair
 
 if __name__ == "__main__":
-    # response_dict = json.load(open("mmlu_pro_3_2_improved_all_repeat.json", "r"))
-    # response_dict = json.load(open("mmlu_pro_3_2_improved_all_repeat_summary.json", "r"))
-    # response_dict = json.load(open("mmlu_3_2_improved.json", "r"))
-    response_dict = json.load(open("mmlu_pro_3_2_critque.json", "r"))
-    # response_dict = json.load(open("mmlu_3_2_critic_context_True.json", "r"))
-    # response_dict = json.load(open("mmlu_3_2_critic_context_False_summary.json", "r"))
-    # response_dict = json.load(open("mmlu_pro_3_2_QwQ-32B_critic_summary_agents.json", "r"))
-    # response_dict = json.load(open("mmlu_pro_3_2_Qwen2.5-7B-Instruct_critic_summary_agents_update_original_solution.json", "r"))
-    # response_dict = json.load(open("mmlu_pro_3_2critic_summary_agents.json", "r"))
-    # response_dict = json.load(open("mmlu_pro_3_2_no_critic_summary_agents.json", "r"))
+    parser = argparse.ArgumentParser(
+        description="Run scoring for file.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter # Show default values in help
+    )
+
+    parser.add_argument(
+        "--input_file",
+        type=Path,
+        required=True,
+        help="Filepath for scoring."
+    )
+
+    parser.add_argument(
+        "--round",
+        type=int,
+        default=0,
+        help="Round number for scoring."
+    )
+    args = parser.parse_args()
+    # Load the JSON file
+    json_file = args.input_file
+    response_dict = json.load(json_file.open("r"))
     questions = list(response_dict.keys())
-    print(len(questions))
+    print("total questions:", len(questions))
+
+    round = args.round
+    if round > 0:
+        print("Evaluating at round:", round)
+    else:
+        print("Evaluating at final round")
 
     accuracies = []
 
     for question in questions:
-        responses, gt = response_dict[question]
-        # if len(responses[0]) < 3:
-        #     continue
+        question_details = response_dict[question]
 
         pred_solutions = []
+        responses = question_details["agent_contexts"]
+        answer = question_details["answer"]
         for response in responses:
-            pred_solution = response[-1]['content']
-
+            if round > 0:
+                pred_solution = response[2*(round-1) + 1]['content']
+            else:
+                pred_solution = response[-1]['content']
             pred_solutions.append(pred_solution)
-            # break
 
-        # pred_solutions = pred_solutions[:1]
-
-        accurate = compute_accuracy(gt, pred_solutions)
-
+        accurate = compute_accuracy(answer, pred_solutions)
 
         if accurate is not None:
             accuracies.append(float(accurate))
@@ -180,4 +198,4 @@ if __name__ == "__main__":
             pdb.set_trace()
             print(gt)
 
-        print("accuracies:", np.mean(accuracies), np.std(accuracies) / (len(accuracies) ** 0.5))
+    print("accuracies:", np.mean(accuracies), np.std(accuracies) / (len(accuracies) ** 0.5))
