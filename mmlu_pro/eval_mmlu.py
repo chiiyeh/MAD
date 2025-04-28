@@ -69,7 +69,12 @@ def parse_answer(input_str):
     for match_str in matches[::-1]:
         solution = match_str.upper()
         if solution:
-            break
+            return solution
+    pattern = r"correct option is (\w)"
+    matches = re.findall(pattern, input_str)
+    if matches:
+        solution = matches[-1].upper()
+        return solution
 
     return solution
 

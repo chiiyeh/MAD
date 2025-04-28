@@ -49,7 +49,7 @@ def load_prompt_template_data(filepath: Path) -> Dict:
 
 
 # Define default max_tokens for clarity
-DEFAULT_MAX_TOKENS = 2048
+DEFAULT_MAX_TOKENS = 3000
 
 #### CHAT TEMPLATE ####
 
