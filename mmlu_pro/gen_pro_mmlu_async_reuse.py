@@ -49,7 +49,7 @@ def load_prompt_template_data(filepath: Path) -> Dict:
 
 
 # Define default max_tokens for clarity
-DEFAULT_MAX_TOKENS = 2048
+DEFAULT_MAX_TOKENS = 3000
 
 #### CHAT TEMPLATE ####
 
@@ -212,10 +212,25 @@ async def main(
     initial_prompt_file = first_value["initial_prompt_file"]
     if reuse_round > 1:
         # Will require the collaborative prompt to be the same
-        if first_value["collaborative_prompt_file"] != collaborative_prompt_data['name']:
+        if first_value["collaborative_prompt_used"] != collaborative_prompt_data['name']:
             print(f"Error: Collaborative prompt file {collaborative_prompt_data['name']} does not match the reused data. Exiting.")
             exit(1)
     agents = len(first_value["agent_contexts"])
+
+    ## Get model name from reuse file
+    # This is a bit of a hack, but we need to get the model name from the reuse file
+    # since reuse file uses the same naming convention as the output file
+    # and we don't want to hardcode it here.
+    reuse_model_match = re.search(r"temp_(.*)_initial", reuse_file.name)
+    # This regex assumes the model name is between "temp_" and "_initial" in the filename
+    # Example: "mmlu_pro_2agents_2rounds_0.7temp_Qwen_Qwen2.5-7B-Instruct_initial_prompt.yaml"
+    if reuse_model_match:
+        reuse_model = reuse_model_match.group(1)
+        if reuse_model != model.replace('/', '_'):
+            print(f"Warning: Model name in reuse file ({reuse_model}) does not match the provided model name ({model.replace('/', '_')}).")
+            print("This may lead to unexpected results. Proceeding with caution.")
+    else:
+        print("Warning: Could not extract model name from reuse file. Proceeding with caution.")
 
 
     output_filename = (
@@ -253,7 +268,6 @@ async def main(
             print(f" Round {round_num + 1}/{rounds}")
 
             tasks = [] # List to hold async tasks for API calls in this round
-            round_num += 1 # Increment round number
 
             # Create tasks for each agent's API call in this round
             for agent_idx in range(agents):
@@ -312,8 +326,8 @@ async def main(
                 # For now, print error and continue to next question/round.
                 pass
 
-            # Optional: Check for answer convergence across agents here if needed
-            # For simplicity, this example runs all planned rounds
+            round_num += 1 # Increment round number
+
 
         # After all rounds for this question, store the final state
         response_dict[q_id] = {
