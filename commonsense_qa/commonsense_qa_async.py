@@ -139,27 +139,26 @@ def load_commonsense_qa(data_dir: str):
     return test_df, val_df
 
 
-def preprocess(test_df):
-    res_df = []
-    for each in test_df:
-        options = []
-        for opt in each["options"]:
-            if opt == "N/A":
-                continue
-            options.append(opt)
-        each["options"] = options
-        res_df.append(each)
+def preprocess(df):
+    # res_df = []
+    # for each in test_df:
+    #     options = []
+    #     for opt in each["choices"]["text"]:
+    #         options.append(opt)
+    #     each["choices"] = options
+    #     res_df.append(each)
+    #     print("res_df" + str(res_df))
     res = {}
-    for each in res_df:
-        if each["category"] not in res:
-            res[each["category"]] = []
-        res[each["category"]].append(each)
+    for each in df:
+        if each["question_concept"] not in res:
+            res[each["question_concept"]] = []
+        res[each["question_concept"]].append(each)
     return res
 
 def format_example(question, options):
     example = "Question: {}\nOptions:\n".format(question)
     choice_map = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    for i, opt in enumerate(options):
+    for i, opt in enumerate(options["text"]):
         example += "{}. {}\n".format(choice_map[i], opt)
     return example
 
@@ -211,8 +210,10 @@ async def main(
     # Load and preprocess data (synchronous)
     print("Loading dataset...")
     try:
-        test_df, dev_df = load_commonsense_qa(os.path.join(rootdir, "dataset/commonsense_qa"))
-        subjects = list(test_df.keys())
+        test_df, val_df = load_commonsense_qa(os.path.join(rootdir, "dataset/commonsense_qa"))
+
+
+        subjects = list(val_df.keys())
         print(f"Loaded subjects: {subjects}")
         if not subjects:
             print("Error: No subjects found in the dataset. Check data_dir.")
@@ -252,7 +253,7 @@ async def main(
     for i in tqdm(range(num_samples), desc="Processing questions"):
         # Select a random question
         subject = random.choice(subjects)
-        df = test_df[subject]
+        df = val_df[subject]
         if not df:
             print(f"Warning: No questions found for subject {subject}. Skipping.")
             continue
@@ -264,14 +265,12 @@ async def main(
 
         idx = random.randint(0, len(df) - 1)
         single_question = df[idx]
-
         # Extract question details
-        q_id = single_question.get("question_id", f"{subject}_{idx}")
-        answer = single_question["answer"]
-        category = single_question["category"]
+        q_id = single_question.get("id", f"{subject}_{idx}")
+        answer = single_question["answerKey"]
+        category = single_question["question_concept"]
         question_text = single_question["question"]
-        options = single_question["options"]
-
+        options = single_question["choices"]
         if q_id in response_dict:
             print(f"Question ID {q_id} already processed. Skipping.")
             continue

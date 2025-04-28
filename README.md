@@ -50,3 +50,15 @@ Execute the script from your terminal, providing the required prompt filenames a
 ```bash
 python mmlu_pro/gen_pro_mmlu_async.py --initial_prompt mmlu_pro/prompts/initial_prompt_v1.yaml --collaborative_prompt mmlu_pro/prompts/collaborative_advise_v1.yaml --num_samples 5 --data_dir ./
 ```
+
+Execute the script from your terminal, providing the required prompt filenames and any desired parameters - commonsense_qa dataset:
+
+```bash
+python commonsense_qa/commonsense_qa_async.py --initial_prompt mmlu_pro/prompts/initial_prompt_v1.yaml --collaborative_prompt mmlu_pro/prompts/collaborative_advise_v1.yaml --num_samples 5 --data_dir ./
+```
+
+Execute the script from your terminal for evaluation, providing the output file name generated from the previous experiment - commonsense_qa dataset:
+
+```bash
+python commonsense_qa/eval_commonsense_qa.py --input_file commonsense_qa_3agents_2rounds_0.7temp_Qwen_Qwen2.5-7B-Instruct_initial_cot_detailed_v1_collaborative_advise_v1.json
+```
