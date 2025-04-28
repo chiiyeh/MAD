@@ -4,9 +4,8 @@ template: |
   These are the solutions to the problem from other agents:
   {% for response in other_agent_responses %}
   One agent solution: ```{{ response }}```
+
   {% endfor %}
 
-  Using the reasoning from other agents as additional advice, give an updated answer.
-  {{ question }}
-
-  Think step by step and then output the final option in the format of "The correct option is (X)" at the end.
+  Using the reasoning from other agents as additional advice, give an updated answer. Examine your solution and that other agents step by step.
+  Output the correct option in the format of "The correct option is (X)" at the end.

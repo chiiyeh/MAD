@@ -1,0 +1,11 @@
+name: collaborative_critique_v3
+description: Not including the question in the prompt. This version is more concise and focuses on the critique process.
+template: |
+  These are the solutions to the problem from other agents:
+  {% for response in other_agent_responses %}
+  One agent solution: ```{{ response }}```
+
+  {% endfor %}
+
+  Using the reasoning from other agents as additional advice, critically evaluate the reasoning provided in your solution. Identify any errors, logical gaps, or alternative valid approaches. Based on your critique and the other solutions, revise your own answer step by step.
+  Output the final option in the format of "The correct option is (X)" at the end.

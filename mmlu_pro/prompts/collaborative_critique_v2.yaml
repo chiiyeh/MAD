@@ -1,5 +1,5 @@
-name: collaborative_critique_v1
-description: Prompts the agent to critique other solutions and correct its own reasoning.
+name: collaborative_critique_v2
+description: Not including the question in the prompt. This version is more concise and focuses on the critique process.
 template: |
   Review the following solutions to the problem from other agents:
   {% for response in other_agent_responses %}
@@ -8,6 +8,4 @@ template: |
   {% endfor %}
 
   Critically evaluate the reasoning provided in these solutions. Identify any errors, logical gaps, or alternative valid approaches. Based on your critique and the other solutions, revise your own step-by-step thinking process to ensure maximum accuracy.
-  {{ question }}
-
   Think step by step, refining your previous answer if necessary, and then output the final option in the format of "The correct option is (X)" at the end.

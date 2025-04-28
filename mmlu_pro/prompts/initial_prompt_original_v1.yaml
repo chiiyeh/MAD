@@ -1,0 +1,8 @@
+name: initial_cot_original_v1
+description: Original implementation of the initial prompt for MMLU.
+template: |
+  Can you answer the following question as accurately as possible?
+
+  {{ question }}
+
+  Explain your answer, output the correct option in the format of "The correct option is (X)" at the end.
