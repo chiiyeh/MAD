@@ -1,0 +1,22 @@
+name: solution_synthesizer_v1
+description: Receives critique and synthesizes a final solution.
+template: |
+  You are a synthesis agent. Your task is to review the original problem and the critique provided by a peer reviewer. Based on this, formulate a comprehensive step-by-step solution and provide the final option in the format of "The correct option is (X)".
+
+  {{ question }} # Pass the original question text
+
+  Proposed Solutions:
+  {% for solution_msg in initial_solution_messages %}
+  Solution {{ loop.index }}:
+  ```
+  {{ solution_msg.content }}
+  ```
+
+  {% endfor %}
+
+  Critique of Proposed Solutions:
+  ```
+  {{ critique_message.content }} # Pass the critic's assistant message dictionary
+  ```
+
+  Synthesize: Think step by step, incorporating the feedback from the critique to form the most accurate solution. Ensure the final option is clearly stated in the format "The correct option is (X)", where X is the letter corresponding to the correct answer.

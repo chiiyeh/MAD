@@ -1,0 +1,23 @@
+name: solution_critic_v1
+description: Receives initial solutions and provides critique.
+template: |
+  You are a critical peer reviewer. Your task is to analyze multiple proposed solutions to the following problem. Analyse the solutions line by line. Compare the solutions and identify potential errors, inconsistencies, or weaknesses in their reasoning. Provide constructive feedback that could help a synthesizer agent arrive at a better final answer.
+  Specific things to look for include:
+  - Are there any logical errors in the reasoning?
+  - Are there any assumptions that are not justified?
+  - Are there any computational errors?
+  - Are there any missing steps in the reasoning?
+  - Are the solutions consistent with each other? If not explain why and point out the errors and suggest improvements.
+  
+  {{ question }}
+
+  Proposed Solutions:
+  {% for solution_msg in initial_solution_messages %}
+  Solution {{ loop.index }}:
+  ```
+  {{ solution_msg.content }}
+  ```
+
+  {% endfor %}
+
+  Critique: Think step by step about the strengths and weaknesses of each solution and how they compare. Then provide your overall feedback and critique.
