@@ -12,8 +12,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.634    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.636    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.613    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.595    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.577    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.595    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.577    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.628    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.610    | 3     |
 | Llama-4-Scout-17B-16E-Instruct | Original (Self-Consistency) |                      | 0.768    |       |
@@ -39,8 +39,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.556    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.593    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.652    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.565    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.565    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.565    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.565    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.609    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.609    | 3     |
 
@@ -56,8 +56,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.825    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.800    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.784    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.730    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.703    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.730    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.703    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.730    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.730    | 3     |
 
@@ -73,8 +73,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.438    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.375    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.529    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.412    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.529    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.412    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.529    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.529    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.412    | 3     |
 
@@ -90,8 +90,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.743    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.743    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.763    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.789    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.816    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.789    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.816    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.763    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.763    | 3     |
 
@@ -107,8 +107,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.720    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.840    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.800    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.760    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.720    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.760    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.720    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.760    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.760    | 3     |
 
@@ -124,8 +124,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.686    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.686    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.686    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.571    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.629    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.571    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.629    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.657    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.629    | 3     |
 
@@ -141,8 +141,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.407    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.370    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.286    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.357    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.214    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.357    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.214    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.321    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.286    | 3     |
 
@@ -158,8 +158,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.600    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.600    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.679    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.643    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.607    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.643    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.607    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.679    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.679    | 3     |
 
@@ -175,8 +175,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.654    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.615    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.560    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.640    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.560    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.640    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.560    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.640    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.640    | 3     |
 
@@ -192,8 +192,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.407    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.370    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.440    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.440    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.400    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.440    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.400    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.480    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.440    | 3     |
 
@@ -209,8 +209,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.567    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.567    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.500    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.536    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.500    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.536    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.500    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.607    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.571    | 3     |
 
@@ -226,8 +226,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.680    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.760    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.552    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.517    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.517    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.517    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.517    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.586    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.552    | 3     |
 
@@ -243,8 +243,8 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.808    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.808    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.607    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.571    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.536    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.571    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.536    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.679    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.679    | 3     |
 
@@ -260,7 +260,7 @@
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.583    | 2     |
 | Qwen2.5-7B-Instruct    | Original                   | Collab critique v1   | 0.583    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed (Self-Consistency) |                      | 0.583    |       |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.625    | 2     |
-| Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.625    | 3     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.625    | 2     |
+| Qwen2.5-7B-Instruct    | Detailed                   | Collaborative advise | 0.625    | 3     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.625    | 2     |
 | Qwen2.5-7B-Instruct    | Detailed                   | Collab critique v1   | 0.625    | 3     |
