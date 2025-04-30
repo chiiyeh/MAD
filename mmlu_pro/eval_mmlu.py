@@ -180,27 +180,39 @@ if __name__ == "__main__":
         print("Evaluating at final round")
 
     accuracies = []
+    category_acc = {}
 
     for question in questions:
         question_details = response_dict[question]
+        category = question_details["category"]
 
         pred_solutions = []
-        responses = question_details["agent_contexts"]
         answer = question_details["answer"]
-        for response in responses:
-            if round > 0:
-                pred_solution = response[2*(round-1) + 1]['content']
-            else:
-                pred_solution = response[-1]['content']
-            pred_solutions.append(pred_solution)
+        if "agent_contexts" in question_details:
+            responses = question_details["agent_contexts"]
+            for response in responses:
+                if round > 0:
+                    pred_solution = response[2*(round-1) + 1]['content']
+                else:
+                    pred_solution = response[-1]['content']
+                pred_solutions.append(pred_solution)
 
-        accurate = compute_accuracy(answer, pred_solutions)
+            accurate = compute_accuracy(answer, pred_solutions)
+        else:
+            pred = question_details["extracted_answer_synthesizer"]
+            if pred is None:
+                if question_details["synthesizer_response"]:
+                    pred = solve_math_problems(question_details["synthesizer_response"]["content"])
+            accurate = 1 if pred == answer else 0
 
         if accurate is not None:
             accuracies.append(float(accurate))
+            category_acc.setdefault(category, []).append(float(accurate))
         else:
             import pdb
             pdb.set_trace()
             print(gt)
 
     print("accuracies:", np.mean(accuracies), np.std(accuracies) / (len(accuracies) ** 0.5))
+    for category, acc in category_acc.items():
+        print(f"Category: {category}, Accuracy: {np.mean(acc)}, Std: {np.std(acc) / (len(acc) ** 0.5)}")

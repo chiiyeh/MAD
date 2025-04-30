@@ -4,9 +4,8 @@ template: |
   These are the solutions to the problem from other agents:
   {% for response in other_agent_responses %}
   One agent solution: ```{{ response }}```
+  
   {% endfor %}
 
-  Compare and contrast these solutions. Where do they agree, and where do they disagree? Analyze the points of disagreement to determine which reasoning is most sound. Use the common points and the most convincing arguments to provide an updated answer.
-  {{ question }}
-
+  Compare and contrast these solutions with your solution. Where do they agree, and where do they disagree? Analyze the points of disagreement to determine which reasoning is most sound. Use the common points and the most convincing arguments to provide an updated answer.
   Think step by step, incorporating insights from the other agents, and then output the final option in the format of "The correct option is (X)" at the end.

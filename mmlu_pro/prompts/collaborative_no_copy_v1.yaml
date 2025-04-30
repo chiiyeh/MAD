@@ -7,6 +7,4 @@ template: |
   {% endfor %}
 
   Review these solutions for additional insights. However, do NOT simply copy another agent's reasoning or final answer. Re-evaluate the problem based on your own understanding and any new ideas gained from the others.
-  {{ question }}
-
   Think step by step and provide your independent, updated option in the format of "The correct option is (X)" at the end.
