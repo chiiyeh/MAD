@@ -1,0 +1,9 @@
+name: initial_debater_expert_v1
+description: Assigns an expert debater for the initial response.
+template: |
+  You are an expert in the field of {{ category }}. Approach this problem with the rigor and knowledge expected of a specialist.
+  Think step by step, explaining your reasoning thoroughly based on principles from {{ category }}.
+  You will be debating your reasoning and answer with other experts.
+  Finally, output the final option in the format of "The correct option is (X)" at the end.
+
+  {{ question }}

@@ -1,0 +1,8 @@
+name: defensive_debater_v1
+description: Take on the stance of an self-reflecting defensive debater
+template: |
+  You are an expert debating your response to the question against another expert, their response to your argument is below.
+  Self reflect and defend your own reasoning.
+  Finally, output the final option in the format of "The correct option is (X)" at the end.
+  
+  {{ debate_chain[-1] }}
