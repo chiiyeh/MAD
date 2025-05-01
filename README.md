@@ -62,3 +62,17 @@ Execute the script from your terminal for evaluation, providing the output file 
 ```bash
 python commonsense_qa/eval_commonsense_qa.py --input_file commonsense_qa_3agents_2rounds_0.7temp_Qwen_Qwen2.5-7B-Instruct_initial_cot_detailed_v1_collaborative_advise_v1.json
 ```
+
+
+To run the experiment for Adversarial Multi-Agent Debate with Judge, execute the script from your terminal for evaluation, providing the required prompt filenames and any desired parameters - commonsense_qa dataset:
+
+```bash
+python mmlu_pro/debate_gen_pro_mmlu_async.py --initial_judge_prompt mmlu_pro/prompts/initial_judge_v1.yaml --debater_1_prompt mmlu_pro/prompts/offensive_debater_v1.yaml --debater_2_prompt mmlu_pro/prompts/defensive_debater_v1.yaml  --data_dir ./  --initial_debater_prompt /mmlu_pro/prompts/initial_debater_v1.yaml --num_samples 10 --round 2
+```
+
+
+To run the experiment for Adversarial Multi-Agent Debate with Judge, execute the script from your terminal for evaluation, providing the required prompt filenames and any desired parameters - commonsense_qa dataset:
+
+```bash
+python commonsense_qa\debate_commonsense_qa_async.py --initial_judge_prompt mmlu_pro/prompts/initial_judge_v1.yaml --debater_1_prompt mmlu_pro/prompts/offensive_debater_v1.yaml --debater_2_prompt mmlu_pro/prompts/defensive_debater_v1.yaml  --data_dir ./  --initial_debater_prompt /mmlu_pro/prompts/initial_debater_v1.yaml --num_samples 10 --round 2
+```
