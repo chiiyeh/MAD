@@ -27,6 +27,13 @@
 | Llama-4-Scout-17B-16E-Instruct | Detailed |           Collab critique v1           | 0.779    |   2    |
 | Llama-4-Scout-17B-16E-Instruct | Detailed |           Collab critique v1           | 0.771    |   3    |
 
+Using separate critic and synthesizer agent:
+
+| Model                  | Initial prompt  | Critic prompt | Synthesizer prompt | Accuracy |
+|------------------------|-----------------|----------------------|----------|-------|
+| Qwen2.5-7B-Instruct    | Detailed  |   Critic v1           | synth v1    |  0.606    |
+| Llama-4-Scout-17B-16E-Instruct    | Detailed  |   Critic v1           | synth v1    |  0.789    |
+
 ### Other
 
 3 Agents
